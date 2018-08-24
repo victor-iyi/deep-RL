@@ -1,4 +1,5 @@
-"""
+"""Demo of an agent chosing policy at random.
+
    @author
      Victor I. Afolabi
      Artificial Intelligence & Software Engineer.
