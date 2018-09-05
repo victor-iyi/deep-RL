@@ -18,6 +18,18 @@ import gym
 import gym.spaces
 
 
+class RandomPolicy(object):
+
+  def __init__(self):
+      pass
+
+  def __repr__(self):
+      return 'RandomPolicy()'
+  
+  def __str__(self):
+      return self.__repr__()
+
+
 def main():
     # noinspection PyUnresolvedReferences
     env = gym.make('FrozenLake-v0')
