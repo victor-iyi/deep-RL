@@ -1,4 +1,5 @@
-"""
+"""Collections of common OpenAI environments used in this project.
+
    @author
      Victor I. Afolabi
      Artificial Intelligence & Software Engineer.
