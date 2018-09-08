@@ -15,11 +15,13 @@
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
 import gym
-import gym.spaces
+import numpy as np
+
+
+# import gym.spaces
 
 
 class RandomPolicy(object):
-
     def __init__(self):
         pass
 
@@ -38,23 +40,33 @@ def main():
     # Game environment.
     env = gym.make('BipedalWalker-v2')
 
-    episodes, frames = 20, 100
-    policy = RandomPolicy()
+    # Observation & action space.
+    obs_space = env.observation_space
+    action_space = env.action_space
+    print('env.observation_space = {}'.format(obs_space.shape))
+    print('env.action_space = {}'.format(action_space.shape))
 
-    for episode in range(episodes):
-        state = env.reset()
-        done, total_reward = False, 0
+    # Q-matrix.
+    Q = np.zeros((obs_space.shape[0], action_space.shape[0]))
+    print('Q.shape = {}'.format(Q.shape))
 
-        for f in range(frames):
-            env.render()
+    # episodes, frames = 20, 100
+    # policy = RandomPolicy()
 
-            # Take random actions.
-            action = policy(env)
-            state, reward, done, info = env.step(action)
+    # for episode in range(episodes):
+    #     state = env.reset()
+    #     done, total_reward = False, 0
 
-            total_reward += reward
+    #     for f in range(frames):
+    #         env.render()
 
-        print('Episode {}\tTotal reward: {}'.format(episode + 1, total_reward))
+    #         # Take random actions.
+    #         action = policy(env)
+    #         state, reward, done, info = env.step(action)
+
+    #         total_reward += reward
+
+    #     print('Episode {}\tTotal reward: {}'.format(episode + 1, total_reward))
 
 
 if __name__ == '__main__':
