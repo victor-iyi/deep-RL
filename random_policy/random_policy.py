@@ -1,4 +1,4 @@
-"""Demo of an agent chosing policy at random.
+"""A randomly chosen policy from the action space.
 
    @author
      Victor I. Afolabi
