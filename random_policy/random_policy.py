@@ -32,7 +32,10 @@ class RandomPolicy(object):
         return self.__repr__()
 
     def __call__(self, env):
-        action = env.action_space.sample()
+        action_space = env.action_space
+        action = np.random.uniform(low=action_space.low,
+                                   high=action_space.high,
+                                   size=action_space.shape)
         return action
 
 
