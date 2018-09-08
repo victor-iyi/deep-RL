@@ -14,22 +14,52 @@
      MIT License
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
-from collections import namedtuple
 
-# Environments.
-_Atari = namedtuple('Atari', ['PONG', 'BREAKOUT', 'SPACE_INVADER'])
-_Box2d = namedtuple('Box2d', ['BIPEDAL_WALKER', 'CART_POLE'])
-_Text = namedtuple('Text', ['TAXI', 'FROZEN_LAKE_8x8'])
 
-# Atari environments.
-Atari = _Atari(SPACE_INVADER='',
-               PONG='',
-               BREAKOUT='')
+#####################################################################
+# +—————————————————————————————————————————————————————————————————+
+# | Atari Environment.
+# +—————————————————————————————————————————————————————————————————+
+#####################################################################
+class Atari:
+    PONG = 'Pong-v0'
+    PHOENIX = 'Phoenix-v0'
+    BOWLING = 'Bowling-v0'
+    ASSAULT = 'Assault-v0'
+    BREAKOUT = 'Breakout-v0'
+    MS_PACMAN = 'MsPacman-v0'
+    SPACE_INVADER = 'SpaceInvaders-v0'
 
-# Box2D environments
-Box2D = _Box2d(BIPEDAL_WALKER='BipedalWalker-v2',
-               CART_POLE='Cart-Pole-v4')
 
-# Text Environments.
-Text = _Text(TAXI='Taxi-v4',
-             FROZEN_LAKE_8x8='FrozenLake8x8-v0')
+#####################################################################
+# +—————————————————————————————————————————————————————————————————+
+# | Box2D Environment.
+# +—————————————————————————————————————————————————————————————————+
+#####################################################################
+class Box2D:
+    BIPEDAL_WALKER = 'BipedalWalker-v2'
+    CAR_RACING = 'CarRacing-v0'
+    LUNAR_LAUNDER = 'LunarLaunder-v2'
+
+
+#####################################################################
+# +—————————————————————————————————————————————————————————————————+
+# | Classic control Environment.
+# +—————————————————————————————————————————————————————————————————+
+#####################################################################
+class ClassicControl:
+    ACROBOT = 'Acrobot-v1'
+    CART_POLE = 'CartPole-v1'
+    MOUNTAIN_CAR = 'MountainCar-v0'
+    PENDULUM = 'Pendulum-v0'
+
+
+#####################################################################
+# +—————————————————————————————————————————————————————————————————+
+# | Text Environment.
+# +—————————————————————————————————————————————————————————————————+
+#####################################################################
+class ToyText:
+    TAXI = 'Taxi-v2'
+    FROZEN_LAKE = 'FrozenLake-v0'
+    FROZEN_LAKE_8x8 = 'FrozenLake8x8-v0'

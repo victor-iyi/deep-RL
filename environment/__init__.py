@@ -13,9 +13,9 @@
      MIT License
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
-from .env import Atari, Box2D, Text
+from .env import Atari, Box2D, ClassicControl, ToyText
 
 __all__ = [
     # Environments.
-    'Atari', 'Box2D', 'Text'
+    'Atari', 'Box2D', 'ClassicControl', 'Text'
 ]
