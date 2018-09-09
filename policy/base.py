@@ -24,11 +24,14 @@ class Base(metaclass=ABCMeta):
     def __repr__(self):
         return 'policy.Base()'
 
-    def __call__(self, *args, **kwargs):
+    def __call__(self, state, **kwargs):
+        pass
+
+    def __getitem__(self, state):
         pass
 
     @abstractmethod
-    def getPolicy(self, observation):
+    def get(self, state):
         pass
 
     @property

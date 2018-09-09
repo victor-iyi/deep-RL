@@ -27,7 +27,7 @@ class RandomPolicy(policy.Base):
     def __repr__(self):
         return 'RandomPolicy()'
 
-    def getPolicy(self, observation):
+    def get(self, observation):
         action_space = self.env.action_space
         action = np.random.uniform(low=action_space.low,
                                    high=action_space.high,
