@@ -15,20 +15,20 @@
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
 import gym
-# import gym.spaces
-
 import numpy as np
 
+import policy
 
-class RandomPolicy(object):
-    def __init__(self):
-        pass
+
+class RandomPolicy(policy.Base):
+    def __init__(self, env, **kwargs):
+        super(RandomPolicy, self).__init__(env, **kwargs)
 
     def __repr__(self):
         return 'RandomPolicy()'
 
-    def __call__(self, env):
-        action_space = env.action_space
+    def getPolicy(self, observation):
+        action_space = self.env.action_space
         action = np.random.uniform(low=action_space.low,
                                    high=action_space.high,
                                    size=action_space.shape)

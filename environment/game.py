@@ -15,10 +15,11 @@
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
 import gym
+from typing import Callable
 
 
 class Game(object):
-    def __init__(self, env):
+    def __init__(self, env: str):
         self._env = gym.make(env)
 
     def __repr__(self):
@@ -27,8 +28,27 @@ class Game(object):
     def __call__(self, *args, **kwargs):
         pass
 
-    def run(self, policy, episode=100, render=False, **kwargs):
-        pass
+    def run(self, policy: Callable, episodes: int = 100, **kwargs):
+        # Default keyword arguments.
+        render = kwargs.get('render', False)
+
+        # Observation & total reward.
+        obs, total_rewards = self._env.reset(), 0
+
+        for episode in range(episodes):
+            # Render game environment.
+            if render:
+                self._env.render()
+
+            # Get an action.
+            action = policy(obs, **kwargs)
+            obs, reward, done, info = self._env.step(action)
+            total_rewards += reward
+
+            if done:
+                break
+
+        return total_rewards
 
     @property
     def env(self):
