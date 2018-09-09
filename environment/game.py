@@ -27,7 +27,7 @@ class Game(object):
     def __call__(self, *args, **kwargs):
         pass
 
-    def run(self, policy, episode=100):
+    def run(self, policy, episode=100, render=False, **kwargs):
         pass
 
     @property

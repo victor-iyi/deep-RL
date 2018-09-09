@@ -15,10 +15,9 @@
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
 import gym
-import numpy as np
-
-
 # import gym.spaces
+
+import numpy as np
 
 
 class RandomPolicy(object):
@@ -27,9 +26,6 @@ class RandomPolicy(object):
 
     def __repr__(self):
         return 'RandomPolicy()'
-
-    def __str__(self):
-        return self.__repr__()
 
     def __call__(self, env):
         action_space = env.action_space
@@ -69,7 +65,7 @@ def main():
 
     #         total_reward += reward
 
-    #     print('Episode {}\tTotal reward: {}'.format(episode + 1, total_reward))
+    #          print('Episode {}\tTotal reward: {}'.format(episode + 1, total_reward))
 
 
 if __name__ == '__main__':
