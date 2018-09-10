@@ -1,4 +1,5 @@
-"""
+"""Base class for various kinds of policy networks.
+
    @author
      Victor I. Afolabi
      Artificial Intelligence & Software Engineer.
@@ -25,14 +26,15 @@ class Base(metaclass=ABCMeta):
         return 'policy.Base()'
 
     def __call__(self, state, **kwargs):
-        pass
+        # TODO: Do some validation
+        return self.get(state, **kwargs)
 
     def __getitem__(self, state):
         pass
 
     @abstractmethod
-    def get(self, state):
-        pass
+    def get(self, state, **kwargs):
+        return state
 
     @property
     def env(self):
