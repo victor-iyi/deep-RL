@@ -36,7 +36,7 @@ class Game(object):
         obs, total_rewards = self._env.reset(), 0
 
         for episode in range(episodes):
-            # Render game environment.
+            # Render game game.
             if render:
                 self._env.render()
 

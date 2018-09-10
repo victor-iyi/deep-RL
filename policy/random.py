@@ -25,14 +25,11 @@ class RandomPolicy(policy.Base):
         super(RandomPolicy, self).__init__(env, **kwargs)
 
     def __repr__(self):
-        return 'RandomPolicy()'
+        return 'policy.RandomPolicy()'
 
-    def get(self, observation):
+    def get(self, state, **kwargs):
         action_space = self.env.action_space
-        action = np.random.uniform(low=action_space.low,
-                                   high=action_space.high,
-                                   size=action_space.shape)
-        return action
+        return action_space.sample()
 
 
 def main():

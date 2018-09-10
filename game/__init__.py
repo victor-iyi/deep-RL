@@ -14,8 +14,12 @@
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
 from .env import Atari, Box2D, ClassicControl, ToyText
+from .game import Game
 
 __all__ = [
     # Environments.
-    'Atari', 'Box2D', 'ClassicControl', 'Text'
+    'Atari', 'Box2D', 'ClassicControl', 'Text',
+
+    # Game.
+    'Game',
 ]
