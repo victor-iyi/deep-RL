@@ -20,12 +20,13 @@ import numpy as np
 import policy
 
 
-class RandomPolicy(policy.Base):
+class RandomPolicy(policy.BasePolicy):
     def __init__(self, env, **kwargs):
         super(RandomPolicy, self).__init__(env, **kwargs)
 
     def __repr__(self):
-        return 'policy.RandomPolicy()'
+        # TODO: return 'RandomPolicy(n_states={}, n_actions={})'
+        return 'RandomPolicy()'
 
     def get(self, state, **kwargs):
         action_space = self.env.action_space

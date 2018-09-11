@@ -16,7 +16,7 @@
 import policy
 
 
-class QNetwork(policy.Base):
+class QNetwork(policy.BasePolicy):
     def __init__(self, **kwargs):
         super(QNetwork, self).__init__(**kwargs)
 

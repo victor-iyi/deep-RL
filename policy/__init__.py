@@ -13,13 +13,13 @@
      MIT License
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
-from policy.base import Base
+from policy.base import BasePolicy
 from policy.random import RandomPolicy
 from policy.genetic import GeneticAlgorithm
 
 __all__ = [
     # Base class.
-    'Base',
+    'BasePolicy',
     # Policies sub-classes.
     'RandomPolicy', 'GeneticAlgorithm'
 ]

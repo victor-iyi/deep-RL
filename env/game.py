@@ -23,10 +23,10 @@ class Game(object):
         self._env = gym.make(env)
 
     def __repr__(self):
-        return 'Game(env={})'.format(self._env.class_name())
+        return 'Game(env={})'.format(self._env.env)
 
-    def __call__(self, *args, **kwargs):
-        pass
+    def __call__(self, policy, **kwargs):
+        return self.run(policy, *kwargs)
 
     def run(self, policy: Callable, episodes: int = 100, **kwargs):
         # Default keyword arguments.

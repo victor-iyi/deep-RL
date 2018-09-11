@@ -14,17 +14,17 @@
      MIT License
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
-import policy
+from policy import BasePolicy
 
 
-class GeneticAlgorithm(policy.Base):
+class GeneticAlgorithm(BasePolicy):
     def __init__(self, **kwargs):
         super(GeneticAlgorithm, self).__init__(**kwargs)
 
     def __repr__(self):
         return 'GeneticAlgorithm()'
 
-    def get(self, state):
+    def get(self, state, **kwargs):
         pass
 
     def fitness(self):

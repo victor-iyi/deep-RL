@@ -16,9 +16,10 @@
 """
 
 from abc import ABCMeta, abstractmethod
+from env.game import Game
 
 
-class Base(metaclass=ABCMeta):
+class BasePolicy(metaclass=ABCMeta):
     def __init__(self, env, **kwargs):
         self._env = env
 
@@ -30,11 +31,21 @@ class Base(metaclass=ABCMeta):
         return self.get(state, **kwargs)
 
     def __getitem__(self, state):
-        pass
+        return self.get(state)
 
     @abstractmethod
     def get(self, state, **kwargs):
-        return state
+        return NotImplemented
+
+    def evaluate(self, game: Game, episodes: int = 100, **kwargs):
+        # Total accumulated reward.
+        total_rewards = 0.0
+
+        for episode in range(episodes):
+            total_rewards += game.run(self, **kwargs)
+
+        # Average reward over episodes.
+        return total_rewards / episodes
 
     @property
     def env(self):
