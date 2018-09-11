@@ -29,15 +29,15 @@ def main(args):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(prog='Random Policy Search',
-                                     usage='python3 src/random_policy.py -n=500',
-                                     description='Get the best score of n random policies',
+    parser = argparse.ArgumentParser(prog='Genetic Algorithm Policy',
+                                     usage='python3 src/genetic_algorithm.py -n=500',
+                                     description='Uses genetic algorithm to solve RL.',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('-n', type=int, default=500,
-                        help='How many random policies to generate.')
+                        help='Number of population in a generation.')
     parser.add_argument('--env', type=str, default=env_names.ClassicControl.CART_POLE,
-                        help='Name of environment to use. See env.names')
+                        help='Name of environment to use. See `env.all_names()`')
 
     args = parser.parse_args()
 

@@ -23,5 +23,5 @@ class QNetwork(policy.Base):
     def __repr__(self):
         return 'QNetwork()'
 
-    def get(self, state):
+    def get(self, state, **kwargs):
         pass
