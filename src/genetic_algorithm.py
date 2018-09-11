@@ -14,16 +14,16 @@
      MIT License
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
-import numpy as np
+# Built-in libraries.
 import argparse
 
-import game
-import policy
+# Custom libraries.
+from env import game, names as env_names
 
 
 def main(args):
-    # Instantiate the game environment.
-    env = game.Game(args.game)
+    # Instantiate the env environment.
+    env = game.Game(args.env)
 
     print(env)
 
@@ -36,8 +36,8 @@ if __name__ == '__main__':
 
     parser.add_argument('-n', type=int, default=500,
                         help='How many random policies to generate.')
-    parser.add_argument('--game', type=str, default=game.ClassicControl.CART_POLE,
-                        help='Name of game. See gym.env.registry.all()')
+    parser.add_argument('--env', type=str, default=env_names.ClassicControl.CART_POLE,
+                        help='Name of environment to use. See env.names')
 
     args = parser.parse_args()
 

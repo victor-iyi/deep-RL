@@ -1,4 +1,5 @@
-"""
+"""Using random policy search to solve a Reinforcement Learning problem.
+
    @author
      Victor I. Afolabi
      Artificial Intelligence & Software Engineer.
@@ -16,13 +17,13 @@
 import numpy as np
 import argparse
 
-import game
 import policy
+from env import game, names as env_names
 
 
 def main(args):
-    # Instantiate the game environment.
-    env = game.Game(args.game)
+    # Instantiate the env environment.
+    env = game.Game(args.env)
 
     # Get random policies.
     policies = [policy.RandomPolicy(env=env) for _ in range(args.n)]
@@ -45,8 +46,8 @@ if __name__ == '__main__':
 
     parser.add_argument('-n', type=int, default=500,
                         help='How many random policies to generate.')
-    parser.add_argument('--game', type=str, default=game.ClassicControl.CART_POLE,
-                        help='Name of game. See gym.env.registry.all()')
+    parser.add_argument('--env', type=str, default=env_names.ClassicControl.CART_POLE,
+                        help='Name of env. See `env.names.get_all()`')
 
     args = parser.parse_args()
 
