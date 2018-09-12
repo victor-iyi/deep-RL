@@ -14,13 +14,20 @@
      MIT License
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
-import gym
 from typing import Callable
+
+import gym
+import numpy as np
 
 
 class Game(object):
     def __init__(self, env: str):
+        # Initialize the GYM environment.
         self._env = gym.make(env)
+
+        # Get the action & observation spaces.
+        self._actions = self._get_space(self._env.action_space)
+        self._observations = self._get_space(self._env.observation_space)
 
     def __repr__(self):
         return 'Game(env={})'.format(self._env.env)
@@ -49,6 +56,18 @@ class Game(object):
                 break
 
         return total_rewards
+
+    @staticmethod
+    def _get_space(space):
+        # Discrete => n, shape
+        if isinstance(space, gym.spaces.Discrete):
+            return np.arange(space.n)
+
+        # Box: low, high, shape
+        elif isinstance(space, gym.spaces.Box):
+            return space.low
+
+        return np.zeros(shape=space.shape)
 
     @property
     def env(self):

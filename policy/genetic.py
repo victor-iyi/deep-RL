@@ -14,12 +14,16 @@
      MIT License
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
+import numpy as np
+
 from policy import BasePolicy
 
 
 class GeneticAlgorithm(BasePolicy):
     def __init__(self, **kwargs):
         super(GeneticAlgorithm, self).__init__(**kwargs)
+        self._n_states = np.arange(16)
+        self._n_actions = np.arange(4)
 
     def __repr__(self):
         return 'GeneticAlgorithm()'

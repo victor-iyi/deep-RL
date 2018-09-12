@@ -47,6 +47,10 @@ class BasePolicy(metaclass=ABCMeta):
         # Average reward over episodes.
         return total_rewards / episodes
 
+    def random_action(self):
+        """Returns a random action from the environment's action space."""
+        return self._env.acion_space.sample()
+
     @property
     def env(self):
         return self._env
