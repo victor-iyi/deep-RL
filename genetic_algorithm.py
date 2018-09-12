@@ -46,7 +46,7 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         prog='Genetic Algorithm Policy',
-        usage='python3 src/genetic_algorithm.py -n=500',
+        # usage='python3 genetic_algorithm.py -n=500',
         description='Uses genetic algorithm to solve RL.',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )

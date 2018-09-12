@@ -40,7 +40,7 @@ def main(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(prog='Random Policy Search',
-                                     usage='python3 src/random_policy.py -n=500',
+                                     usage='python3 random_policy.py -n=500',
                                      description='Get the best score of n random policies',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
