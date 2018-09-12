@@ -21,9 +21,13 @@ import numpy as np
 
 
 class Game(object):
-    def __init__(self, env: str):
+    def __init__(self, env: str, **kwargs):
         # Initialize the GYM environment.
         self._env = gym.make(env)
+
+        # Extract keyword arguments.
+        seed = kwargs.get('seed', None)
+        self._env.seed(seed=seed)
 
         # Get the action & observation spaces.
         self._actions = self._get_space(self._env.action_space)
