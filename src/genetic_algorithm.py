@@ -39,32 +39,39 @@ def main(args):
 
         # Get average rewards & best rewards.
         rand_avg, rand_best = np.average(rand_rewards), np.amax(rand_rewards)
-        print(f'Random Policy => Average: {rand_avg}\tBest: {rand_best}')
+        print(('Random Policy => Average: {}'
+               '\tBest: {}').format(rand_avg, rand_best))
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(prog='Genetic Algorithm Policy',
-                                     usage='python3 src/genetic_algorithm.py -n=500',
-                                     description='Uses genetic algorithm to solve RL.',
-                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser = argparse.ArgumentParser(
+        prog='Genetic Algorithm Policy',
+        usage='python3 src/genetic_algorithm.py -n=500',
+        description='Uses genetic algorithm to solve RL.',
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
 
     # Command line arguments.
     parser.add_argument('-n', type=int, default=500,
                         help='Number of population in a generation.')
-    parser.add_argument('-e', '--env', type=str, default=env_names.ClassicControl.CART_POLE,
-                        help='Name of environment to use. See `env.all_names()`')
-    parser.add_argument('-b', '--benchmark', type=bool, default=True,
-                        help='Benchmark Genetic Algorithms performance with Random Policy search.')
+    parser.add_argument(
+        '-e', '--env', type=str, default=env_names.ClassicControl.CART_POLE,
+        help='Name of environment to use. See `env.all_names()`'
+    )
+    parser.add_argument(
+        '-b', '--benchmark', type=bool, default=True,
+        help=('Benchmark Genetic Algorithms performance with Random '
+              'Policy search.')
+    )
 
     # Parse arguments.
     args = parser.parse_args()
 
     # Pretty-print argument list.
-    print(f'\n{"="*25}',
-          f'\n{"Options":<15}\t{"Default":<15}',
-          f'\n{"="*25}')
+    print('\n{0}\n{1:<15}\t{2:<15}\n{0}'.format("=" * 25,
+                                                "options", "Default"))
     for k, v in vars(args).items():
-        print(f'{k:<15}\t{v:<15}')
+        print('{:<15}\t{:<15}'.format(k, v))
 
     # Run main.
     main(args=args)
