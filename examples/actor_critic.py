@@ -25,6 +25,7 @@ from config import Log
 def main(args):
     # Instantiate the env environment.
     env = game.Game(args.env)
+
     Log.debug(env)
     Log.debug('Action space: {}'.format(env.action_space))
     Log.debug('State  space: {}'.format(env.observation_space))
@@ -38,7 +39,7 @@ if __name__ == '__main__':
 
     parser.add_argument('-n', type=int, default=500,
                         help='How many random policies to generate.')
-    parser.add_argument('--env', type=str, default=env_names.ClassicControl.CART_POLE,
+    parser.add_argument('--env', type=str, default=env_names.Atari.MS_PACMAN,
                         help='Name of env. See `env.names`')
 
     args = parser.parse_args()
