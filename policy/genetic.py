@@ -20,6 +20,7 @@ from policy import BasePolicy
 
 
 class GeneticAlgorithm(BasePolicy):
+
     def __init__(self, **kwargs):
         super(GeneticAlgorithm, self).__init__(**kwargs)
         self._n_states = np.arange(16)
@@ -31,8 +32,10 @@ class GeneticAlgorithm(BasePolicy):
     def get(self, state, **kwargs):
         pass
 
-    def fitness(self):
-        pass
+    def crossover(self, policy):
+        new_policy = policy.copy()
+        for state in self._n_states:
+            new_policy[state]
 
     def mutate(self):
         pass

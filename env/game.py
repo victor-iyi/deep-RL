@@ -21,6 +21,7 @@ import numpy as np
 
 
 class Game(object):
+
     def __init__(self, env: str, **kwargs):
         # Initialize the GYM environment.
         self._env = gym.make(env)
@@ -32,6 +33,7 @@ class Game(object):
         # Get the action & observation spaces.
         self._actions = self._get_space(self._env.action_space)
         self._observations = self._get_space(self._env.observation_space)
+        self._state = self._env.reset()
 
     def __repr__(self):
         return 'Game(env={})'.format(self._env.env)
@@ -53,7 +55,7 @@ class Game(object):
 
             # Get an action.
             action = policy(obs, **kwargs)
-            obs, reward, done, info = self._env.step(action)
+            self._state, reward, done, info = self._env.step(action)
             total_rewards += reward
 
             if done:
@@ -84,3 +86,7 @@ class Game(object):
     @property
     def observation_space(self):
         return self._env.observation_space
+
+    @property
+    def state(self):
+        return self._state

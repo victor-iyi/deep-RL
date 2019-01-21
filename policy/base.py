@@ -16,15 +16,36 @@
 """
 
 from abc import ABCMeta, abstractmethod
-from env.game import Game
+# from env.game import Game
+
+import numpy as np
+import copy
+
+##############################################################################
+# +——————————————————————————————————————————————————————————————————————————+
+# | Policy - policy[get], policy.actions(), policy.states(), policy.sample()
+# +——————————————————————————————————————————————————————————————————————————+
+##############################################################################
 
 
-class BasePolicy(metaclass=ABCMeta):
+class BasePolicy():
+
+    __metaclass__ = ABCMeta
+
     def __init__(self, env, **kwargs):
+        # RL environment.
         self._env = env
 
+        # Action & observations (states).
+        self._state = self._env.state
+        self._actions = self._env._actions
+
+        # Policy. Shape: (n_states, n_actions)
+        self._policy = np.zeros(shape=(len(self._state.shape),
+                                       len(self._actions.shape)))
+
     def __repr__(self):
-        return 'policy.Base()'
+        return 'BasePolicy(env={})'.format(self._env)
 
     def __call__(self, state, **kwargs):
         # TODO: Do some validation
@@ -37,7 +58,10 @@ class BasePolicy(metaclass=ABCMeta):
     def get(self, state, **kwargs):
         return NotImplemented
 
-    def evaluate(self, game: Game, episodes: int = 100, **kwargs):
+    def copy(self):
+        return copy.deepcopy(self)
+
+    def evaluate(self, game, episodes=100, **kwargs):
         # Total accumulated reward.
         total_rewards = 0.0
 
@@ -47,10 +71,24 @@ class BasePolicy(metaclass=ABCMeta):
         # Average reward over episodes.
         return total_rewards / episodes
 
-    def random_action(self):
+    # Create alias for `evaluate`.
+    fitness = evaluate
+
+    def sample(self):
         """Returns a random action from the environment's action space."""
         return self._env.acion_space.sample()
 
     @property
     def env(self):
         return self._env
+
+    @property
+    def actions(self):
+        return self._actions
+
+    @property
+    def state(self):
+        return self._state
+
+    # Create alias for `states`.
+    observation = state

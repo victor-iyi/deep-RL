@@ -19,6 +19,7 @@ import argparse
 
 import policy
 from env import game, names as env_names
+from utils import Log
 
 
 def main(args):
@@ -31,11 +32,11 @@ def main(args):
     # Evaluate each policy.
     rewards = [env.run(policy=p, episodes=20) for p in policies]
     average, best = np.average(rewards), np.amax(rewards)
-    print('Average: {}\tBest Reward: {}'.format(average, best))
+    Log.debug('Average: {}\tBest Reward: {}'.format(average, best))
 
     # noinspection PyTypeChecker
     reward = env.run(policy=policies[np.argmax(rewards)])
-    print('Running policy with best reward: {}'.format(reward))
+    Log.debug('Running policy with best reward: {}'.format(reward))
 
 
 if __name__ == '__main__':
@@ -51,10 +52,10 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    print(f'\n{"="*25}',
-          f'\n{"Options":<15}\t{"Default":<15}',
-          f'\n{"="*25}')
+    Log.info(f'{"="*30}')
+    Log.info(f'{"Options":<15}\t{"Default":<15}')
+    Log.info(f'{"="*30}')
     for k, v in vars(args).items():
-        print(f'{k:<15}\t{v:<15}')
+        Log.info(f'{k:<15}\t{v:<15}')
 
     main(args=args)
