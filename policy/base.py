@@ -16,7 +16,7 @@
 """
 
 from abc import ABCMeta, abstractmethod
-# from env.game import Game
+from env.game import Game
 
 import numpy as np
 import copy
@@ -28,24 +28,27 @@ import copy
 ##############################################################################
 
 
-class BasePolicy():
-
-    __metaclass__ = ABCMeta
+class BasePolicy(metaclass=ABCMeta):
 
     def __init__(self, env, **kwargs):
+        if isinstance(env, Game):
+            raise TypeError("Inappropriate argument type for `env`."
+                            f"Expected env.game.Game got {type(env)}")
+
         # RL environment.
         self._env = env
+        self._name = kwargs.get('name', self.__class__.__name__)
 
         # Action & observations (states).
         self._state = self._env.state
         self._actions = self._env._actions
 
         # Policy. Shape: (n_states, n_actions)
-        self._policy = np.zeros(shape=(len(self._state.shape),
-                                       len(self._actions.shape)))
+        self._policy = np.zeros(shape=(self._env.n_states,
+                                       self._n_actions))
 
     def __repr__(self):
-        return 'BasePolicy(env={})'.format(self._env)
+        return '{}(env={})'.format(self._name, self._env)
 
     def __call__(self, state, **kwargs):
         # TODO: Do some validation

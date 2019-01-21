@@ -25,23 +25,9 @@ from config import Log
 def main(args):
     # Instantiate the env environment.
     env = game.Game(args.env)
-    # Log.debug(env.actions)
-    # Log.debug(env.observations)
     Log.debug(env)
     Log.debug('Action space: {}'.format(env.action_space))
     Log.debug('State  space: {}'.format(env.observation_space))
-
-    # Get random policies.
-    # policies = [policy.RandomPolicy(env=env) for _ in range(args.n)]
-
-    # # Evaluate each policy.
-    # rewards = [env.run(policy=p, episodes=20) for p in policies]
-    # average, best = np.average(rewards), np.amax(rewards)
-    # Log.debug('Average: {}\tBest Reward: {}'.format(average, best))
-
-    # # noinspection PyTypeChecker
-    # reward = env.run(policy=policies[np.argmax(rewards)])
-    # Log.debug('Running policy with best reward: {}'.format(reward))
 
 
 if __name__ == '__main__':
@@ -52,8 +38,8 @@ if __name__ == '__main__':
 
     parser.add_argument('-n', type=int, default=500,
                         help='How many random policies to generate.')
-    parser.add_argument('--env', type=str, default=env_names.Atari.MS_PACMAN,
-                        help='Name of env. See `env.names.get_all()`')
+    parser.add_argument('--env', type=str, default=env_names.ClassicControl.CART_POLE,
+                        help='Name of env. See `env.names`')
 
     args = parser.parse_args()
 
