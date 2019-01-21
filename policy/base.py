@@ -14,18 +14,15 @@
      MIT License
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
-
-from abc import ABCMeta, abstractmethod
-from env.game import Game
-
-import numpy as np
+# Built-in libraries.
 import copy
+from abc import ABCMeta, abstractmethod
 
-##############################################################################
-# +——————————————————————————————————————————————————————————————————————————+
-# | Policy - policy[get], policy.actions(), policy.states(), policy.sample()
-# +——————————————————————————————————————————————————————————————————————————+
-##############################################################################
+# Third-party libraires.
+import numpy as np
+
+# Custom libraries.
+from env.game import Game
 
 
 class BasePolicy(metaclass=ABCMeta):
@@ -64,12 +61,12 @@ class BasePolicy(metaclass=ABCMeta):
     def copy(self):
         return copy.deepcopy(self)
 
-    def evaluate(self, game, episodes=100, **kwargs):
+    def evaluate(self, game: Game, episodes: int=100, **kwargs):
         # Total accumulated reward.
         total_rewards = 0.0
 
         for episode in range(episodes):
-            total_rewards += game.run(self, **kwargs)
+            total_rewards += game(self, **kwargs)
 
         # Average reward over episodes.
         return total_rewards / episodes
@@ -79,7 +76,7 @@ class BasePolicy(metaclass=ABCMeta):
 
     def sample(self):
         """Returns a random action from the environment's action space."""
-        return self._env.acion_space.sample()
+        return self._env.sample()
 
     @property
     def env(self):

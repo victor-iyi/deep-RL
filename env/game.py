@@ -14,13 +14,45 @@
      MIT License
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
+# Built-in libraries.
 from typing import Callable, Optional, Any
 
+# Third-party libraries.
 import gym
 import numpy as np
 
+from policy import BasePolicy
 
 class Game(object):
+    """Game is a representation of the environment which an agent interacts with.
+
+    Methods:
+        def __call__(self, policy, **kwargs):
+            # Interact with the environment by taking actions & receiving rewards.
+
+        def reset(self):
+            # Place the agent in a random state.
+
+        def render(self, supress:Optional[bool]=False):
+            # Renders the environment, if `supress=True`, the render will be supressed.
+
+        def sample(self):
+            # Returns a random action in the action space.
+
+        def run(self, policy: Callable, episodes: int = 100, **kwargs):
+            # Interact with the environment by taking actions & receiving rewards.
+
+    Attributes:
+        env (gym.env.Env): An initializaed OpenAI gym environment.
+        action_space (np.ndarray):
+        observation_space (np.ndarray):
+        actions (np.ndarray):
+        observations (np.ndarray):
+        state (np.ndarray): The current state of the agent.
+        n_actions (int): Number of possible actions to be taken in the environment.
+        n_observation (int): Number of observable states in the environment.
+    """
+
 
     def __init__(self, env: str, **kwargs):
         # Initialize the GYM environment.
@@ -38,14 +70,50 @@ class Game(object):
     def __repr__(self):
         return 'Game(env={})'.format(self._env.env)
 
-    def __call__(self, policy, **kwargs):
+    def __call__(self, policy: BasePolicy, **kwargs):
         return self.run(policy, *kwargs)
 
+    def reset(self):
+        """Place the agent in a random state.
+
+        Returns:
+            np.ndarray: State where the agent is being placed in.
+        """
+
+        self._state = self._env.reset()
+        return self._state
+
     def render(self, supress=False):
+        """Renders the environment, if `supress=True`, the render will be supressed.
+
+        Args:
+            supress (bool, optional): Defaults to False.
+                If set to `True`, the environment will not be rendered.
+        """
+
         if not supress:
             self._env.render()
 
-    def run(self, policy: Callable, episodes: int = 100, **kwargs):
+    def sample(self):
+        """Returns a random action in the action space.
+
+        Returns:
+            int: A single integer representing which (random) action to take.
+        """
+        return self._env.action_space.sample()
+
+    def run(self, policy: BasePolicy, episodes: int = 100, **kwargs):
+        """Interact with the environment by taking actions & receiving rewards.
+
+        Args:
+            policy (Callable): An instance of policy.BasePolicy that tells
+                the agent what actions to take.
+            episodes (int, optional): Defaults to 100. How many episodes to be run.
+
+        Returns:
+            int: Total accumulated rewards.
+        """
+
         # Default keyword arguments.
         render = kwargs.get('render', False)
 

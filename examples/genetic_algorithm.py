@@ -21,26 +21,29 @@ import argparse
 import numpy as np
 
 # Custom libraries.
-import policy
+from config import Log
+from policy import RandomPolicy, GeneticAlgorithm
 from env import Game, names as env_names
 
 
 def main(args):
     # Instantiate the env environment.
     env = Game(args.env)
-    print(env)
+    Log.debug(env)
+    Log.debug('Action space: {}'.format(env.action_space))
+    Log.debug('State  space: {}'.format(env.observation_space))
 
     if args.benchmark:
-        print('Benchmarking with Random policy search...')
+        Log.warn('Benchmarking with Random policy search...')
 
         # Get random policies & run it through the environment.
-        rand_policies = [policy.RandomPolicy(env) for _ in range(args.n)]
+        rand_policies = [RandomPolicy(env) for _ in range(args.n)]
         rand_rewards = [env.run(rand_policy) for rand_policy in rand_policies]
 
         # Get average rewards & best rewards.
         rand_avg, rand_best = np.average(rand_rewards), np.amax(rand_rewards)
-        print(('Random Policy => Average: {}'
-               '\tBest: {}').format(rand_avg, rand_best))
+        Log.debug(('Random Policy => Average: {}'
+                   '\tBest: {}').format(rand_avg, rand_best))
 
 
 if __name__ == '__main__':
@@ -68,10 +71,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     # Pretty-print argument list.
-    print('\n{0}\n{1:<15}\t{2:<15}\n{0}'.format("=" * 25,
-                                                "options", "Default"))
+    Log.info(f'{"="*30}')
+    Log.info(f'{"Options":<15}\t{"Default":<15}')
+    Log.info(f'{"="*30}')
     for k, v in vars(args).items():
-        print('{:<15}\t{:<15}'.format(k, v))
+        Log.info(f'{k:<15}\t{v:<15}')
 
     # Run main.
     main(args=args)

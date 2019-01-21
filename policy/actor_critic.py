@@ -14,3 +14,24 @@
      MIT License
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
+# Third-party libraries.
+import numpy as np
+
+# Custom libraries.
+from policy import BasePolicy
+
+
+class A2C(BasePolicy):
+    def __init__(self, **kwargs):
+        super(BasePolicy, self).__init__(**kwargs)
+
+    def get(self, state: np.ndarray, **kwargs):
+        pass
+
+
+class A3C(BasePolicy):
+    def __init__(self, *args, **kwargs):
+        super(BasePolicy, self).__init__(**kwargs)
+
+    def get(self, state: np.ndarray, **kwargs):
+        pass

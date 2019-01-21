@@ -23,24 +23,12 @@ class GeneticAlgorithm(BasePolicy):
 
     def __init__(self, **kwargs):
         super(GeneticAlgorithm, self).__init__(**kwargs)
-        self._n_states = np.arange(16)
-        self._n_actions = np.arange(4)
-
-    def __repr__(self):
-        return 'GeneticAlgorithm()'
 
     def get(self, state, **kwargs):
         pass
 
-    def crossover(self, policy):
-        new_policy = policy.copy()
-        for state in self._n_states:
-            new_policy[state]
+    def crossover(self, policy: GeneticAlgorithm):
+        pass
 
     def mutate(self):
         pass
-
-
-if __name__ == '__main__':
-    ga = GeneticAlgorithm()
-    print(ga)
