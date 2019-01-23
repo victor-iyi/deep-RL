@@ -24,6 +24,8 @@ import numpy as np
 # Custom libraries.
 from env.game import Game
 
+__all__ = ['BasePolicy']
+
 
 class BasePolicy(metaclass=ABCMeta):
 
@@ -45,7 +47,7 @@ class BasePolicy(metaclass=ABCMeta):
                                        self._n_actions))
 
     def __repr__(self):
-        return '{}(env={})'.format(self._name, self._env)
+        return '{}(env={})'.format(self.__class__.__name__, self._env)
 
     def __call__(self, state, **kwargs):
         # TODO: Do some validation

@@ -14,57 +14,36 @@
      MIT License
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
+# Third-party library.
 import gym
 import numpy as np
 
-import policy
+# Custom library.
+from config import Log
+from policy.base import BasePolicy
+from env import Game, names as env_names
 
 
-class RandomPolicy(policy.BasePolicy):
+class RandomPolicy(BasePolicy):
     def __init__(self, env, **kwargs):
         super(RandomPolicy, self).__init__(env, **kwargs)
 
-    def __repr__(self):
-        # TODO: return 'RandomPolicy(n_states={}, n_actions={})'
-        return 'RandomPolicy()'
-
     def get(self, state, **kwargs):
-        action_space = self.env.action_space
-        return action_space.sample()
+        return self.env.sample()
 
 
-def main():
+def test():
     # Game environment.
-    env = gym.make('BipedalWalker-v2')
+    env = Game(env_names.ClassicControl.CART_POLE)
+    policy = RandomPolicy(env)
+
+    Log.debug("env = {}".format(env))
+    Log.debug("policy = {}".format(policy))
 
     # Observation & action space.
-    obs_space = env.observation_space
-    action_space = env.action_space
-    print('env.observation_space = {}'.format(obs_space.shape))
-    print('env.action_space = {}'.format(action_space.shape))
-
-    # Q-matrix.
-    Q = np.zeros((obs_space.shape[0], action_space.shape[0]))
-    print('Q.shape = {}'.format(Q.shape))
-
-    # episodes, frames = 20, 100
-    # policy = RandomPolicy()
-
-    # for episode in range(episodes):
-    #     state = env.reset()
-    #     done, total_reward = False, 0
-
-    #     for f in range(frames):
-    #         env.render()
-
-    #         # Take random actions.
-    #         action = policy(env)
-    #         state, reward, done, info = env.step(action)
-
-    #         total_reward += reward
-
-    #          print('Episode {}\tTotal reward: {}'.format(episode + 1, total_reward))
+    Log.info('env.observation_space = {}'.format(env.observation_space))
+    Log.info('env.action_space = {}'.format(env.action_space))
 
 
 if __name__ == '__main__':
-    main()
+    test()

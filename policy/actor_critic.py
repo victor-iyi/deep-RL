@@ -22,6 +22,14 @@ from policy import BasePolicy
 
 
 class A2C(BasePolicy):
+    """Advantage Actor-Critic (A2C) Method.
+
+    Methods:
+        def get(self, state: np.ndarray, **kwargs):
+
+    Attributes:
+        See `policy.BasePolicy`.
+    """
     def __init__(self, **kwargs):
         super(BasePolicy, self).__init__(**kwargs)
 
@@ -30,6 +38,15 @@ class A2C(BasePolicy):
 
 
 class A3C(BasePolicy):
+    """Asynchronous Advantage Actor-Critic (A3C) Method.
+
+    Methods:
+        def get(self, state: np.ndarray, **kwargs):
+
+    Attributes:
+        See `policy.BasePolicy`.
+    """
+
     def __init__(self, *args, **kwargs):
         super(BasePolicy, self).__init__(**kwargs)
 
