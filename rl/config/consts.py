@@ -19,7 +19,7 @@
 import os.path
 
 # Custom libraries.
-from config.config import Config
+from rl.config.config import Config
 
 # Exported configurations.
 __all__ = [

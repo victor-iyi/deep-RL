@@ -14,10 +14,8 @@
      MIT License
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
-import numpy as np
 import argparse
 
-import policy
 from env import game, names as env_names
 from config import Log
 

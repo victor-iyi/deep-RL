@@ -15,6 +15,7 @@
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
 
+
 ##############################################################################
 # +——————————————————————————————————————————————————————————————————————————+
 # | Atari Environments.
@@ -61,6 +62,7 @@ class ClassicControl:
     CART_POLE = 'CartPole-v1'
     MOUNTAIN_CAR = 'MountainCar-v0'
     PENDULUM = 'Pendulum-v0'
+
 
 # _ClassicControl = namedtuple('ClassicControl', ['ACROBOT', 'CART_POLE', 'MOUNTAIN_CAR', 'PENDULUM'])
 # ClassicControl = _ClassicControl(ACROBOT='Acrobot-v1', CART_POLE='CartPole-v1',

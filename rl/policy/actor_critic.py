@@ -18,7 +18,7 @@
 import numpy as np
 
 # Custom libraries.
-from policy import BasePolicy
+from rl.policy.base import BasePolicy
 
 
 class A2C(BasePolicy):

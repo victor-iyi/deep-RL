@@ -14,14 +14,11 @@
      MIT License
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
-# Third-party library.
-import gym
-import numpy as np
 
 # Custom library.
-from config import Log
-from policy.base import BasePolicy
-from env import Game, names as env_names
+from rl.config import Log
+from rl.policy.base import BasePolicy
+from rl.env import Game, names as env_names
 
 
 class RandomPolicy(BasePolicy):

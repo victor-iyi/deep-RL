@@ -20,15 +20,14 @@ import argparse
 # Third-party libraries.
 import numpy as np
 
-# Custom libarires.
-from config import Log
-from policy import RandomPolicy
-from env import game, names as env_names
+# Custom libraries.
+from rl import Log, Game, RandomPolicy
+from rl.env import names as env_names
 
 
 def main(args):
     # Instantiate the env environment.
-    env = game.Game(args.env)
+    env = Game(args.env)
     Log.debug(env)
     Log.debug('Action space: {}'.format(env.action_space))
     Log.debug('State  space: {}'.format(env.observation_space))

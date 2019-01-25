@@ -22,7 +22,7 @@ import numpy as np
 
 # Custom libraries.
 from config import Log
-from policy import RandomPolicy, GeneticAlgorithm
+from policy import RandomPolicy
 from env import Game, names as env_names
 
 

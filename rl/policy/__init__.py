@@ -15,15 +15,16 @@
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
 
-from policy.base import BasePolicy
-from policy.random import RandomPolicy
-from policy.genetic import GeneticAlgorithm
-from policy.actor_critic import A2C, A3C
+from rl.policy.base import BasePolicy
+from rl.policy.q_network import QNetwork
+from rl.policy.random import RandomPolicy
+from rl.policy.actor_critic import A2C, A3C
+from rl.policy.genetic import GeneticAlgorithm
 
 
 __all__ = [
     # Base class.
     'BasePolicy',
     # Policies sub-classes.
-    'RandomPolicy', 'GeneticAlgorithm', 'A2C', 'A3C',
+    'RandomPolicy', 'GeneticAlgorithm', 'QNetwork', 'A2C', 'A3C',
 ]

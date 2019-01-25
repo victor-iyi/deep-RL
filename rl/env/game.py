@@ -15,13 +15,15 @@
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
 # Built-in libraries.
-from typing import Callable, Optional, Any
 
 # Third-party libraries.
 import gym
 import numpy as np
 
-from policy import BasePolicy
+# from rl.policy.base import BasePolicy
+
+__all__ = ['Game']
+
 
 class Game(object):
     """Game is a representation of the environment which an agent interacts with.
@@ -53,7 +55,6 @@ class Game(object):
         n_observation (int): Number of observable states in the environment.
     """
 
-
     def __init__(self, env: str, **kwargs):
         # Initialize the GYM environment.
         self._env = gym.make(env)
@@ -70,7 +71,7 @@ class Game(object):
     def __repr__(self):
         return 'Game(env={})'.format(self._env.env)
 
-    def __call__(self, policy: BasePolicy, **kwargs):
+    def __call__(self, policy, **kwargs):
         return self.run(policy, *kwargs)
 
     def reset(self):
@@ -83,15 +84,15 @@ class Game(object):
         self._state = self._env.reset()
         return self._state
 
-    def render(self, supress=False):
-        """Renders the environment, if `supress=True`, the render will be supressed.
+    def render(self, suppress=False):
+        """Renders the environment, if `suppress=True`, the render will be suppressed.
 
         Args:
-            supress (bool, optional): Defaults to False.
+            suppress (bool, optional): Defaults to False.
                 If set to `True`, the environment will not be rendered.
         """
 
-        if not supress:
+        if not suppress:
             self._env.render()
 
     def sample(self):
@@ -102,7 +103,7 @@ class Game(object):
         """
         return self._env.action_space.sample()
 
-    def run(self, policy: BasePolicy, episodes: int = 100, **kwargs):
+    def run(self, policy, episodes: int = 100, **kwargs):
         """Interact with the environment by taking actions & receiving rewards.
 
         Args:

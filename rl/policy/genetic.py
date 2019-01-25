@@ -14,9 +14,8 @@
      MIT License
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
-import numpy as np
 
-from policy import BasePolicy
+from rl.policy.base import BasePolicy
 
 
 class GeneticAlgorithm(BasePolicy):
@@ -27,7 +26,7 @@ class GeneticAlgorithm(BasePolicy):
     def get(self, state, **kwargs):
         pass
 
-    def crossover(self, policy: GeneticAlgorithm):
+    def crossover(self, policy: BasePolicy):
         pass
 
     def mutate(self):

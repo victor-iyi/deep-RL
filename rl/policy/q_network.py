@@ -6,20 +6,19 @@
      GitHub: https://github.com/victor-iyiola
 
    @project
-     File: __init__.py
-     Created on 08 September, 2018 @ 11:42 PM.
+     File: q_network.py
+     Created on 10 September, 2018 @ 12:57 AM.
 
    @license
      MIT License
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
-from env.game import Game
-from env.names import Atari, Box2D, ClassicControl, ToyText
+from rl.policy.base import BasePolicy
 
-__all__ = [
-    # Environments.
-    'Atari', 'Box2D', 'ClassicControl', 'Text',
 
-    # Game.
-    'Game',
-]
+class QNetwork(BasePolicy):
+    def __init__(self, **kwargs):
+        super(QNetwork, self).__init__(**kwargs)
+
+    def get(self, state, **kwargs):
+        pass

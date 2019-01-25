@@ -14,10 +14,9 @@
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
 
-from config.config import Config
-from config.utils import Log, File, Cache
-from config.consts import FS, LOGGER, SETUP
-
+from rl.config.config import Config
+from rl.config.utils import Log, Cache, File
+from rl.config.consts import LOGGER, FS, SETUP
 
 __all__ = [
     'Config',
