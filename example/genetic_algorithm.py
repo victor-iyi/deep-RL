@@ -14,16 +14,13 @@
      MIT License
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
-# Built-in libraries.
-import argparse
-
 # Third-party libraries.
 import numpy as np
 
 # Custom libraries.
 from config import Log
-from policy import RandomPolicy
-from env import Game, names as env_names
+from rl.env import names as env_names
+from rl import Game, RandomPolicy, GeneticAlgorithm
 
 
 def main(args):
@@ -47,6 +44,9 @@ def main(args):
 
 
 if __name__ == '__main__':
+    # Built-in libraries.
+    import argparse
+
     parser = argparse.ArgumentParser(
         prog='Genetic Algorithm Policy',
         # usage='python3 genetic_algorithm.py -n=500',

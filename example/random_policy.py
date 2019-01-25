@@ -14,22 +14,39 @@
      MIT License
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
-import argparse
+# Third-party libraries.
+import numpy as np
 
-from env import game, names as env_names
-from config import Log
+# Custom libraries.
+from config.utils import Log
+from rl import Game, RandomPolicy
+from rl.env import names as env_names
 
 
 def main(args):
     # Instantiate the env environment.
-    env = game.Game(args.env)
-
+    env = Game(args.env)
     Log.debug(env)
     Log.debug('Action space: {}'.format(env.action_space))
     Log.debug('State  space: {}'.format(env.observation_space))
 
+    # Get random policies.
+    policies = [RandomPolicy(env=env) for _ in range(args.n)]
+
+    # Evaluate each policy.
+    rewards = [env.run(policy=p, episodes=20) for p in policies]
+    average, best = np.average(rewards), np.amax(rewards)
+    Log.debug('Average: {}\tBest Reward: {}'.format(average, best))
+
+    # noinspection PyTypeChecker
+    reward = env.run(policy=policies[np.argmax(rewards)])
+    Log.debug('Running policy with best reward: {}'.format(reward))
+
 
 if __name__ == '__main__':
+    # Built-in libraries.
+    import argparse
+
     parser = argparse.ArgumentParser(prog='Random Policy Search',
                                      usage='python3 random_policy.py -n=500',
                                      description='Get the best score of n random policies',
@@ -38,7 +55,7 @@ if __name__ == '__main__':
     parser.add_argument('-n', type=int, default=500,
                         help='How many random policies to generate.')
     parser.add_argument('--env', type=str, default=env_names.Atari.MS_PACMAN,
-                        help='Name of env. See `env.names`')
+                        help='Name of env. See `env.names.get_all()`')
 
     args = parser.parse_args()
 

@@ -63,7 +63,7 @@ class BasePolicy(metaclass=ABCMeta):
     def copy(self):
         return copy.deepcopy(self)
 
-    def evaluate(self, game: Game, episodes: int=100, **kwargs):
+    def evaluate(self, game: Game, episodes: int = 100, **kwargs):
         # Total accumulated reward.
         total_rewards = 0.0
 

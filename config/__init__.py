@@ -15,8 +15,7 @@
 """
 
 from rl.config.config import Config
-from rl.config.utils import Log, Cache, File
-from rl.config.consts import LOGGER, FS, SETUP
+from config.utils import Log, Cache, File
 
 __all__ = [
     'Config',

@@ -13,16 +13,15 @@
      MIT License
      Copyright (c) 2019. Victor I. Afolabi. All rights reserved.
 """
-from rl.config import Log, Cache, File, Config
-
+# Environment.
 from rl.env.game import Game
 from rl.env.names import Atari, ClassicControl, Box2D, ToyText
 
+# Policy (Agents).
 from rl.policy import RandomPolicy, QNetwork, GeneticAlgorithm, A2C, A3C
 
 
 __all__ = [
-    'Log', 'Cache', 'File', 'Config',
     'Game', 'Atari', 'ClassicControl', 'Box2D', 'ToyText',
     'A2C', 'A3C', 'QNetwork', 'GeneticAlgorithm', 'RandomPolicy',
 ]

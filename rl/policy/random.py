@@ -16,7 +16,6 @@
 """
 
 # Custom library.
-from rl.config import Log
 from rl.policy.base import BasePolicy
 from rl.env import Game, names as env_names
 
@@ -27,20 +26,3 @@ class RandomPolicy(BasePolicy):
 
     def get(self, state, **kwargs):
         return self.env.sample()
-
-
-def test():
-    # Game environment.
-    env = Game(env_names.ClassicControl.CART_POLE)
-    policy = RandomPolicy(env)
-
-    Log.debug("env = {}".format(env))
-    Log.debug("policy = {}".format(policy))
-
-    # Observation & action space.
-    Log.info('env.observation_space = {}'.format(env.observation_space))
-    Log.info('env.action_space = {}'.format(env.action_space))
-
-
-if __name__ == '__main__':
-    test()

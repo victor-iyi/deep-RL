@@ -14,6 +14,7 @@
      MIT License
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
+
 from rl.env.game import Game
 from rl.env.names import Atari, Box2D, ClassicControl, ToyText
 
