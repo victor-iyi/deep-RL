@@ -29,7 +29,7 @@ from typing import List, Iterable, Callable, Union
 import numpy as np
 
 # Custom libraries.
-from rl.config import consts
+from config import consts
 
 # Exported classes and functions.
 __all__ = [

@@ -1,4 +1,5 @@
 colorlog>=3.1.4
 numpy>=1.14.3
+easydict
 tensorflow>=1.11.0
 keras>=2.2.0

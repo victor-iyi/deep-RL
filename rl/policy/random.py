@@ -17,7 +17,6 @@
 
 # Custom library.
 from rl.policy.base import BasePolicy
-from rl.env import Game, names as env_names
 
 
 class RandomPolicy(BasePolicy):

@@ -1,4 +1,5 @@
-"""
+"""Project configuration package.
+
    @author
      Victor I. Afolabi
      Artificial Intelligence & Software Engineer.
@@ -13,9 +14,10 @@
      MIT License
      Copyright (c) 2018. Victor I. Afolabi. All rights reserved.
 """
-
-from rl.config.config import Config
+# Configuration libraries.
+from config.config import Config
 from config.utils import Log, Cache, File
+from config.consts import FS, LOGGER, SETUP
 
 __all__ = [
     'Config',
