@@ -48,14 +48,14 @@ if __name__ == '__main__':
     import argparse
 
     parser = argparse.ArgumentParser(prog='Random Policy Search',
-                                     usage='python3 random_policy.py -n=500',
+                                     usage='python3 examples/random_policy.py -n=500',
                                      description='Get the best score of n random policies',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('-n', type=int, default=500,
                         help='How many random policies to generate.')
     parser.add_argument('--env', type=str, default=env_names.Atari.MS_PACMAN,
-                        help='Name of env. See `env.names.get_all()`')
+                        help='Name of environment. See `rl.env.names`')
 
     args = parser.parse_args()
 

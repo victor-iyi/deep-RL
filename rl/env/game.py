@@ -84,6 +84,26 @@ class Game(object):
         self._state = self._env.reset()
         return self._state
 
+    def step(self, action):
+        return self._env.step(action)
+
+    def transition(self, state: int, action: int):
+        """Transition function i.e. T(s' | s, a) or P(next state | state, action).
+
+        Args:
+            state (int): Current state of the agent.
+            action (int): Action to be taken by the agent.
+
+        Returns:
+            List[Tuple[float, int, float, bool]] - Probability of getting to the
+            next state, the next state (s'), reward R(s, a), done or not - for ever
+
+            e.g [(0.3333333333333333, 0, 0.0, False),
+                 (0.3333333333333333, 0, 0.0, False),
+                 (0.3333333333333333, 4, 0.0, False)]
+        """
+        return self._env.env.P[state][action]
+
     def render(self, suppress=False):
         """Renders the environment, if `suppress=True`, the render will be suppressed.
 

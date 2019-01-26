@@ -18,10 +18,12 @@ from rl.env.game import Game
 from rl.env.names import Atari, ClassicControl, Box2D, ToyText
 
 # Policy (Agents).
-from rl.policy import RandomPolicy, QNetwork, GeneticAlgorithm, A2C, A3C
+from rl.policy import (RandomPolicy, QNetwork, ValueIteration,
+                       PolicyIteration, GeneticAlgorithm, A2C, A3C)
 
 
 __all__ = [
     'Game', 'Atari', 'ClassicControl', 'Box2D', 'ToyText',
-    'A2C', 'A3C', 'QNetwork', 'GeneticAlgorithm', 'RandomPolicy',
+    'A2C', 'A3C', 'QNetwork', 'ValueIteration', 'PolicyIteration',
+    'GeneticAlgorithm', 'RandomPolicy',
 ]

@@ -1,4 +1,5 @@
-"""
+"""Q-Learning with function approximation & Bellman Equation.
+
    @author
      Victor I. Afolabi
      Artificial Intelligence & Software Engineer.
