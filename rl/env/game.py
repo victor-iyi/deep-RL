@@ -20,8 +20,6 @@
 import gym
 import numpy as np
 
-# from rl.policy.base import BasePolicy
-
 __all__ = ['Game']
 
 
@@ -35,8 +33,8 @@ class Game(object):
         def reset(self):
             # Place the agent in a random state.
 
-        def render(self, supress:Optional[bool]=False):
-            # Renders the environment, if `supress=True`, the render will be supressed.
+        def render(self, suppress:Optional[bool]=False):
+            # Renders the environment, if `suppress=True`, the render will be suppressed.
 
         def sample(self):
             # Returns a random action in the action space.
@@ -45,7 +43,7 @@ class Game(object):
             # Interact with the environment by taking actions & receiving rewards.
 
     Attributes:
-        env (gym.env.Env): An initializaed OpenAI gym environment.
+        env (gym.env.Env): An initialized OpenAI gym environment.
         action_space (np.ndarray):
         observation_space (np.ndarray):
         actions (np.ndarray):

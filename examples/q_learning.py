@@ -30,6 +30,7 @@ def main(args):
     value_iter_policy = ValueIteration(env=env)
     Log.debug(value_iter_policy)
     rewards = env.run(value_iter_policy)
+    Log.debug('Rewards: {}'.format(rewards))
 
 
 if __name__ == '__main__':

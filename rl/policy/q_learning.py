@@ -51,8 +51,9 @@ class ValueIteration(BasePolicy):
         Returns:
             int: Action to be taken in the given state.
         """
-        if not isinstance(state, int):
-            raise AssertionError("Cannot perform Value Iteration in this environment.")
+        if not isinstance(state, (int, np.int64)):
+            raise AssertionError(
+                "Cannot perform Value Iteration in this environment.")
 
         return self._policy[state]
 
@@ -121,3 +122,46 @@ class PolicyIteration(BasePolicy):
 
     def get(self, state, **kwargs):
         Log.warn(state)
+
+
+class QLearning(BasePolicy):
+    def __init__(self, env, **kwargs):
+        super(QLearning, self).__init__(env, **kwargs)
+        # Extract keyword arguments.
+        self._alpha = kwargs.get('alpha', 0.7)      # Learning rage.
+        self._gamma = kwargs.get('gamma', 0.7)      # Discount factor.
+        self._epsilon = kwargs.get('epsilon', 0.9)  # E-Greedy expoloration.
+
+        # Q-function.
+        self._Q = np.zeros(shape=[self._env.n_states, self._env.n_actions])
+
+    def get(self, state, **kwargs):
+        if np.random.rand(1) < self._epsilon:
+            # Take random actions.
+            action = self._env.sample()
+        else:
+            # Action from Q-function.
+            action = self._Q[state]
+        return action
+
+    def update(self, state: int, next_state: int, action: int, reward: float):
+        """Update rule for Q-Learning (Bellman's Equation).
+
+        Args:
+            state (int): Previous state observed in the environment.
+            next_state (int): Next state the agent was transitioned to after taking action.
+            action (int): Action taking from state to next_state.
+            reward (float): Reward for taking action in `state`.
+        """
+
+        self._Q[state, action] += (self._alpha * (reward   # Reward for getting in the next_state.
+                                                  # Discount factor.
+                                                  + self._gamma
+                                                  # Value for next state.
+                                                  * np.amax(self._Q[next_state])
+                                                  # Value for state, action pair.
+                                                  - self._Q[state, action]))
+
+    @property
+    def Q(self):
+        return self._Q
