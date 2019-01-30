@@ -21,7 +21,7 @@ from config.utils import Log
 from rl.policy.base import BasePolicy
 
 __all__ = [
-    'ValueIteration', 'PolicyIteration',
+    'ValueIteration', 'PolicyIteration', 'QLearning',
 ]
 
 
@@ -135,22 +135,38 @@ class QLearning(BasePolicy):
         # Q-function.
         self._Q = np.zeros(shape=[self._env.n_states, self._env.n_actions])
 
-    def get(self, state, **kwargs):
+    def get(self, state: int, **kwargs):
+        """Mapping from state to action.
+
+        Args:
+            state (int): State observed by the agent.
+
+        Raises:
+            ValueError: Environement does not support Q-Learning.
+
+        Returns:
+            int: Action to be performed in the given state.
+        """
+
+        if not isinstance(state, int):
+            raise ValueError('Environment does not support Q-Learning.'
+                             'Try using Q-Network or Policy Gradients.')
+
         if np.random.rand(1) < self._epsilon:
             # Take random actions.
             action = self._env.sample()
         else:
-            # Action from Q-function.
+            # Select actions from Q.
             action = self._Q[state]
         return action
 
-    def update(self, state: int, next_state: int, action: int, reward: float):
+    def update(self, state: int, action: int, next_state: int, reward: float):
         """Update rule for Q-Learning (Bellman's Equation).
 
         Args:
             state (int): Previous state observed in the environment.
-            next_state (int): Next state the agent was transitioned to after taking action.
             action (int): Action taking from state to next_state.
+            next_state (int): Next state the agent was transitioned to, after taking action.
             reward (float): Reward for taking action in `state`.
         """
 
