@@ -16,7 +16,7 @@
 """
 # Custom libraries.
 from config.utils import Log
-from rl import Game, ValueIteration
+from rl import Game, QLearning
 from rl.env import names as env_names
 
 
@@ -27,9 +27,9 @@ def main(args):
     Log.debug('Observation space {}'.format(env.observation_space))
 
     # Value Iteration.
-    value_iter_policy = ValueIteration(env=env)
+    value_iter_policy = QLearning(env=env)
     Log.debug(value_iter_policy)
-    rewards = env.run(value_iter_policy)
+    rewards = env.run(value_iter_policy, episodes=args.episodes)
     Log.debug('Rewards: {}'.format(rewards))
 
 
@@ -38,14 +38,14 @@ if __name__ == '__main__':
     import argparse
 
     parser = argparse.ArgumentParser(prog='Q-Learning',
-                                     usage='python3 example/q_learning.py -n=500',
+                                     usage='python3 example/q_learning.py -e=500',
                                      description='Get the best score of n random policies',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('-n', '--episodes', type=int, default=500,
-                        help='How many episodes to play.')
-    parser.add_argument('-e', '--env', type=str, default=env_names.ToyText.FROZEN_LAKE,
+    parser.add_argument('-E', '--env', type=str, default=env_names.ToyText.FROZEN_LAKE,
                         help='Name of env. See `env.names.get_all()`')
+    parser.add_argument('-e', '--episodes', type=int, default=500,
+                        help='How many episodes to play.')
 
     args = parser.parse_args()
 

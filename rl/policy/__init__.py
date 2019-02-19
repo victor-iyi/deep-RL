@@ -20,13 +20,13 @@ from rl.policy.q_network import QNetwork
 from rl.policy.random import RandomPolicy
 from rl.policy.actor_critic import A2C, A3C
 from rl.policy.genetic import GeneticAlgorithm
-from rl.policy.q_learning import ValueIteration, PolicyIteration
-
+from rl.policy.q_learning import ValueIteration, PolicyIteration, QLearning
 
 __all__ = [
     # Base class.
     'BasePolicy',
     # Policies sub-classes.
     'RandomPolicy', 'GeneticAlgorithm', 'A2C', 'A3C',
-    'ValueIteration', 'PolicyIteration', 'QNetwork',
+    'ValueIteration', 'PolicyIteration', 'QLearning',
+    'QNetwork',
 ]

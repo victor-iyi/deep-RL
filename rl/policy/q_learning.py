@@ -52,8 +52,8 @@ class ValueIteration(BasePolicy):
             int: Action to be taken in the given state.
         """
         if not isinstance(state, (int, np.int64)):
-            raise AssertionError(
-                "Cannot perform Value Iteration in this environment.")
+            raise AssertionError("Cannot perform Value Iteration"
+                                 " in this environment.")
 
         return self._policy[state]
 
@@ -130,7 +130,7 @@ class QLearning(BasePolicy):
         # Extract keyword arguments.
         self._alpha = kwargs.get('alpha', 0.7)      # Learning rage.
         self._gamma = kwargs.get('gamma', 0.7)      # Discount factor.
-        self._epsilon = kwargs.get('epsilon', 0.9)  # E-Greedy expoloration.
+        self._epsilon = kwargs.get('epsilon', 0.9)  # E-Greedy exploration.
 
         # Q-function.
         self._Q = np.zeros(shape=[self._env.n_states, self._env.n_actions])
@@ -142,13 +142,12 @@ class QLearning(BasePolicy):
             state (int): State observed by the agent.
 
         Raises:
-            ValueError: Environement does not support Q-Learning.
+            ValueError: Environment does not support Q-Learning.
 
         Returns:
             int: Action to be performed in the given state.
         """
-
-        if not isinstance(state, int):
+        if not isinstance(state, (np.int64, int)):
             raise ValueError('Environment does not support Q-Learning.'
                              'Try using Q-Network or Policy Gradients.')
 
